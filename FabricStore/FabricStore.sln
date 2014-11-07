@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{B3B838EF-D300-4C03-A463-6806E9C97890}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{150207CC-6AE0-423A-9CF8-0A0D4E945C7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricStore.Web", "FabricStore.Web\FabricStore.Web.csproj", "{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricStore.Web.Tests", "FabricStore.Web.Tests\FabricStore.Web.Tests.csproj", "{628A9D1F-C8B5-4800-A64C-99983DA5D5CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF} = {B3B838EF-D300-4C03-A463-6806E9C97890}
+		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD} = {B3B838EF-D300-4C03-A463-6806E9C97890}
+	EndGlobalSection
+EndGlobal
