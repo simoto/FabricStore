@@ -55,7 +55,9 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IUowData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UowData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FabricStore.Models\FabricStore.Models.csproj">
