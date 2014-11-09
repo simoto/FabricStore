@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FabricStore.Web.Models;
+using FabricStore.Models;
 
 namespace FabricStore.Web.Controllers
 {

@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using FabricStore.Web.Models;
+using FabricStore.Models;
+using FabricStore.Data;
 
 namespace FabricStore.Web
 {

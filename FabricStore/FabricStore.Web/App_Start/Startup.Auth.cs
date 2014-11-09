@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using FabricStore.Web.Models;
+using FabricStore.Data;
+using FabricStore.Models;
 
 namespace FabricStore.Web
 {
