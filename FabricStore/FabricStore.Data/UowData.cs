@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using FabricStore.Models;
 
-    class UowData : IUowData
+    public class UowData : IUowData
     {
         private readonly DbContext context;
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();

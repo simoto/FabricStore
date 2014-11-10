@@ -1,6 +1,8 @@
 namespace FabricStore.Data.Migrations
 {
+    using FabricStore.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -16,18 +18,53 @@ namespace FabricStore.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if(context.Products.Any())
+            {
+                return;
+            }
+     
+            ICollection<Tag> tags = new List<Tag>()
+            {
+                new Tag(){ Name = "Вълна" },
+                new Tag(){ Name = "Коприна" },
+                new Tag(){ Name = "Сатен" },
+                new Tag(){ Name = "Дантела" },
+                new Tag(){ Name = "Полиестер" },
+                new Tag(){ Name = "Памук" }
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            foreach (var tag in tags)
+            {
+                context.Tags.Add(tag);
+            }
+
+            IList<Category> categories = new List<Category>()
+            {
+                new Category(){ Name = "Denim" },
+                new Category() { Name = "Clouth" },
+                new Category() { Name = "Camoflague" }
+            };
+
+            Manufacturer manufacturer = new Manufacturer() { Name = "US Fabric" };
+
+            ApplicationUser user = new ApplicationUser() { UserName = "test", Email = "test@test.test" };
+
+            Product product = new Product()
+            {
+                Name = "Black Denim",
+                Price = 10.00m,
+                Category = categories[0],
+                Image = "url",
+                Description = "the best fabric description",
+                Manufacturer = manufacturer,
+                Tags = tags,
+                IsAvailable = true,
+                AvailableAmount = 300
+            };
+
+            context.Products.Add(product);
+            context.SaveChanges();
+            //this.Seed(context);
         }
     }
 }
