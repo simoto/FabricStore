@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FabricStore.Data.Migrations;
+using FabricStore.Web.Infrastructure.Mapping;
+using System.Reflection;
 
 namespace FabricStore.Web
 {
@@ -20,6 +22,9 @@ namespace FabricStore.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<ApplicationDbContext>(new MigrateDatabaseToLatestVersion<ApplicationDbContext, MigrationConfiguration>());
+
+            var automapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
+            automapperConfig.Execute();
         }
     }
 }

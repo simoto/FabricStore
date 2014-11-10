@@ -9,6 +9,7 @@
     using FabricStore.Web.Models;
     using FabricStore.Data;
     using FabricStore.Models;
+    using AutoMapper.QueryableExtensions;
 
     public class HomeController : BaseController
     {
@@ -21,15 +22,7 @@
 
         public ActionResult Index()
         {
-            var listOfProducts = this.products.All()
-                    .Take(6)
-                    .Select(x => new ProductViewModel
-                    {
-                        Id = x.Id,
-                        Name = x.Name,
-                        Image = x.Image,
-                        Price = x.Price
-                    });
+            var listOfProducts = this.products.All().Project().To<ProductViewModel>();
 
             this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
 

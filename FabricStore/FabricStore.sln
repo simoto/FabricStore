@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricStore.Data", "FabricS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricStore.Models", "FabricStore.Models\FabricStore.Models.csproj", "{8CB0C981-8B98-4B58-94E8-A580897BA870}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricStore.Web.Infrastructure", "FabricStore.Web.Infrastructure\FabricStore.Web.Infrastructure.csproj", "{CD80AD1C-82E9-4178-84B0-299DB7E2943C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{8CB0C981-8B98-4B58-94E8-A580897BA870}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CB0C981-8B98-4B58-94E8-A580897BA870}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CB0C981-8B98-4B58-94E8-A580897BA870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD80AD1C-82E9-4178-84B0-299DB7E2943C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD80AD1C-82E9-4178-84B0-299DB7E2943C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD80AD1C-82E9-4178-84B0-299DB7E2943C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD80AD1C-82E9-4178-84B0-299DB7E2943C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{628A9D1F-C8B5-4800-A64C-99983DA5D5CD} = {B3B838EF-D300-4C03-A463-6806E9C97890}
 		{3B0E0B4E-F354-463D-9D4B-05F4153F7DCA} = {150207CC-6AE0-423A-9CF8-0A0D4E945C7F}
 		{8CB0C981-8B98-4B58-94E8-A580897BA870} = {150207CC-6AE0-423A-9CF8-0A0D4E945C7F}
+		{CD80AD1C-82E9-4178-84B0-299DB7E2943C} = {B3B838EF-D300-4C03-A463-6806E9C97890}
 	EndGlobalSection
 EndGlobal
