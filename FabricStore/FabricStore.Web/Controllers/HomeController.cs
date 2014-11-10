@@ -22,10 +22,13 @@
 
         public ActionResult Index()
         {
-            var listOfProducts = this.products.All().Project().To<ProductViewModel>();
+            if (this.HttpContext.Cache["HomePageProducts"] == null)
+            {
+                var listOfProducts = this.products.All().OrderByDescending(x => x.DataAdded).Take(8).Project().To<ProductViewModel>();
 
-            this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
-
+                this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
+            }
+            
             return View(this.HttpContext.Cache["HomePageProducts"]);
         }
 

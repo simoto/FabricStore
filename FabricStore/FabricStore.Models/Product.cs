@@ -42,6 +42,8 @@
 
         public decimal AvailableAmount { get; set; }
 
+        public DataType DataAdded { get; set; }
+
         public virtual ICollection<Comment> Comments
         {
             get { return this.comments; }

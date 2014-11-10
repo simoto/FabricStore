@@ -49,20 +49,25 @@ namespace FabricStore.Data.Migrations
 
             ApplicationUser user = new ApplicationUser() { UserName = "test", Email = "test@test.test" };
 
-            Product product = new Product()
+            List<Product> products = new List<Product>();
+            for (int i = 0; i < 10; i++)
             {
-                Name = "Black Denim",
-                Price = 10.00m,
-                Category = categories[0],
-                Image = "url",
-                Description = "the best fabric description",
-                Manufacturer = manufacturer,
-                Tags = tags,
-                IsAvailable = true,
-                AvailableAmount = 300
-            };
+                products.Add(new Product()
+                {
+                    Name = "Black Denim" + i,
+                    Price = 10.00m,
+                    Category = categories[i % 3],
+                    Image = "http://itschool.bg/application/uploads/tutorials/gallery/tutorials/100/8.jpg",
+                    Description = "the best fabric description" + i,
+                    Manufacturer = manufacturer,
+                    IsAvailable = true,
+                    AvailableAmount = 300 + i
+                });
+            }
 
-            context.Products.Add(product);
+
+            context.Products.AddOrUpdate(products.ToArray());
+           
             context.SaveChanges();
             //this.Seed(context);
         }

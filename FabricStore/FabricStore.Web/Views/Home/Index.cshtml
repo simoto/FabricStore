@@ -5,23 +5,31 @@
 
 <div class="jumbotron">
     <h1>Fabric Store System</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p class="lead">Best prices and wide variety of fabrics</p>
     @*<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
 </div>
 <div class="row">
-    @for (int i = 0; i < Model.Count(); i++)
-    {
-        var product = Model.ElementAt(i);
-        <div class="col-md-4">
-            <h2>@product.Name</h2>
-            <img src="@product.Image" />
-            <p><a class="btn btn-default" href="@Url.Action("Details", "Product", new { product.Id })">Price @product.Price</a></p>
-        </div>
-    }
+    <h2>New products</h2>
+    <div class="row">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            var product = Model.ElementAt(i);
+                <div class="col-sm-5 col-md-3">
+                    <div class="thumbnail">
+                        <img src="http://itschool.bg/application/uploads/tutorials/gallery/tutorials/100/8.jpg" alt="...">
+                        <div class="caption">
+                            <h3>@product.Name</h3>
+                            <p>...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
 </div>
 
 
-    @*<div class="col-md-4">
+@*<div class="col-md-4">
         <h2>Getting started</h2>
         <p>
             ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
