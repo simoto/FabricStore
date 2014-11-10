@@ -7,12 +7,21 @@
     using System.Web.Caching;
     using System.Web.Mvc;
     using FabricStore.Web.Models;
+    using FabricStore.Data;
+    using FabricStore.Models;
 
     public class HomeController : BaseController
     {
+        private IRepository<Product> products;
+
+        public HomeController(IRepository<Product> products)
+        {
+            this.products = products;
+        }
+
         public ActionResult Index()
         {
-            var listOfProducts = this.Data.Products.All()
+            var listOfProducts = this.products.All()
                     .Take(6)
                     .Select(x => new ProductViewModel
                     {
