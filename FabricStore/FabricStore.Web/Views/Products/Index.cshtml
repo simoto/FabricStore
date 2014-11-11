@@ -1,0 +1,23 @@
+﻿@model IEnumerable<FabricStore.Web.Models.ProductHomeViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        var product = Model.ElementAt(i);
+        <div class="col-sm-5 col-md-3">
+            <div class="thumbnail">
+                <img src="@product.Image" alt="...">
+                <div class="caption">
+                    <h3>@product.Name</h3>
+                    <p>...</p>
+                    <p><a href="@Url.Action("Details", "Products", new { product.Id })" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

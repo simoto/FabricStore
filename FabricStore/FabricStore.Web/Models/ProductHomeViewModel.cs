@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Web;
 
-    public class ProductViewModel : IMapFrom<Product>
+    public class ProductHomeViewModel : IMapFrom<Product>
     {
         public int Id { get; set; }
 
@@ -16,5 +16,7 @@
         public decimal Price { get; set; }
 
         public string Image { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

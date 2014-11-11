@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FabricStore.Web.Models.ProductHomeViewModel>
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-sm-5 col-md-3">
+            <div class="thumbnail">
+                <img src="@product.Image" alt="...">
+                <div class="caption">
+                    <h3>@product.Name</h3>
+                    <p>...</p>
+                    <p><a href="@Url.Action("Details", "Products", new { product.Id })" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@for (int i = 1; i <= ViewBag.Pages; i++)
+{
+    <a href="@Url.Action("List", new { id = i })">@i</a>
+}

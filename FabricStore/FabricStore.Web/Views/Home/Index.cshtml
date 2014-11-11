@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FabricStore.Web.Models.ProductViewModel>
+﻿@model IEnumerable<FabricStore.Web.Models.ProductHomeViewModel>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -16,11 +16,11 @@
             var product = Model.ElementAt(i);
                 <div class="col-sm-5 col-md-3">
                     <div class="thumbnail">
-                        <img src="http://itschool.bg/application/uploads/tutorials/gallery/tutorials/100/8.jpg" alt="...">
+                        <img src="@product.Image" alt="...">
                         <div class="caption">
                             <h3>@product.Name</h3>
                             <p>...</p>
-                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                            <p><a href="@Url.Action("Details", "Products", new { product.Id })" class="btn btn-primary" role="button">View</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                         </div>
                     </div>
                 </div>
