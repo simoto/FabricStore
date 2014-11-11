@@ -24,7 +24,7 @@
         {
             if (this.HttpContext.Cache["HomePageProducts"] == null)
             {
-                var listOfProducts = this.products.All().OrderByDescending(x => x.DataAdded).Take(8).Project().To<ProductHomeViewModel>();
+                var listOfProducts = this.products.All().OrderByDescending(x => x.Id).Take(8).Project().To<ProductHomeViewModel>();
 
                 this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
             }

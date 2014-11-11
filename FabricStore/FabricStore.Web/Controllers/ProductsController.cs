@@ -44,7 +44,7 @@ namespace FabricStore.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductHomeViewModel product = products.All().Project().To<ProductHomeViewModel>().FirstOrDefault(x => x.Id == id);
+            ProductDetailsViewModel product = products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id);
             if (product == null)
             {
                 return HttpNotFound();
