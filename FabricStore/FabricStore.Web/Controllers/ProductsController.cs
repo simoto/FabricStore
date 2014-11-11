@@ -44,6 +44,9 @@
                 return this.HttpNotFound();
             }
 
+            var categories = this.data.Categories.All().Project().To<CategoryViewModel>();
+
+            this.ViewData.Add("Categories", categories);
             return this.View(product);
         }
 
