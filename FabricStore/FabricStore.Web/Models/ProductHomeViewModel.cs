@@ -15,7 +15,7 @@
 
         public decimal Price { get; set; }
 
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
         public virtual Category Category { get; set; }
     }

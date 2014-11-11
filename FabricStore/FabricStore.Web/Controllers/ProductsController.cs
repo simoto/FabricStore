@@ -63,5 +63,11 @@
 
             return data;
         }
+
+        public ActionResult GetImage(int id)
+        {
+            byte[] image = products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id).Image;
+            return File(image, "image/jpg");
+        }
     }
 }

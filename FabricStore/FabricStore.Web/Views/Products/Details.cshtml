@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <img alt="" src="@Model.Image">
+                <div class="col-md-5">
+                    <img src="@Url.Action("GetImage", "Products", new { id = Model.Id })" alt="@Model.Name" class="img-responsive img-thumbnail" />
                 </div>
                 <div class="col-md-6">
                     <address>
@@ -30,24 +30,25 @@
                     <h2>
                         <strong>Price: $@Model.Price /kg</strong><br><br>
                     </h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="tabbable">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#1" data-toggle="tab">Description</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="1">
-                                <p>
-                                   @Model.Description
-                                </p>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#1" data-toggle="tab">Description</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="1">
+                                        <p>
+                                            @Model.Description
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
     @*<dl class="dl-horizontal">

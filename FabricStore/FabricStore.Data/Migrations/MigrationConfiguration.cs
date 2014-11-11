@@ -3,9 +3,12 @@ namespace FabricStore.Data.Migrations
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using FabricStore.Models;
+    using System.IO;
 
     public sealed class MigrationConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -50,6 +53,9 @@ namespace FabricStore.Data.Migrations
             ApplicationUser user = new ApplicationUser() { UserName = "test", Email = "test@test.test" };
 
             List<Product> products = new List<Product>();
+
+            var image = new Bitmap(Image.FromFile("C:/Temps/vikoza.jpg"));
+
             for (int i = 0; i < 10; i++)
             {
                 products.Add(new Product()
@@ -57,7 +63,7 @@ namespace FabricStore.Data.Migrations
                     Name = "Black Denim" + i,
                     Price = 10.00m,
                     Category = categories[i % 3],
-                    Image = "http://itschool.bg/application/uploads/tutorials/gallery/tutorials/100/8.jpg",
+                    Image = this.imageToByteArray(image),
                     Description = "the best fabric description" + i,
                     Manufacturer = manufacturer,
                     IsAvailable = true,
@@ -68,5 +74,12 @@ namespace FabricStore.Data.Migrations
             context.Products.AddOrUpdate(products.ToArray());
             context.SaveChanges();
         }
+
+        private byte[] imageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, ImageFormat.Gif);
+            return ms.ToArray();
+        }        
     }
 }

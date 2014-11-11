@@ -27,8 +27,7 @@
 
         public virtual Category Category { get; set; }
 
-        [Required]
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
         [Required]
         public string Description { get; set; }
