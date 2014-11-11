@@ -6,10 +6,10 @@
     using System.Web;
     using System.Web.Caching;
     using System.Web.Mvc;
-    using FabricStore.Web.Models;
+    using AutoMapper.QueryableExtensions;
     using FabricStore.Data;
     using FabricStore.Models;
-    using AutoMapper.QueryableExtensions;
+    using FabricStore.Web.Models;
 
     public class HomeController : BaseController
     {
@@ -29,21 +29,21 @@
                 this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
             }
             
-            return View(this.HttpContext.Cache["HomePageProducts"]);
+            return this.View(this.HttpContext.Cache["HomePageProducts"]);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Fabric Store about page";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Information";
 
-            return View();
+            return this.View();
         }
     }
 }

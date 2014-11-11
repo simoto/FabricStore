@@ -16,11 +16,6 @@
         {
         }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-
         public IDbSet<Product> Products { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
@@ -30,5 +25,10 @@
         public IDbSet<Comment> Comments { get; set; }
 
         public IDbSet<Tag> Tags { get; set; }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
     }
 }

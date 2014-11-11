@@ -1,36 +1,36 @@
 namespace FabricStore.Data.Migrations
 {
-    using FabricStore.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using FabricStore.Models;
 
     public sealed class MigrationConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public MigrationConfiguration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "FabricStore.Data.ApplicationDbContext";
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
+            this.ContextKey = "FabricStore.Data.ApplicationDbContext";
         }
 
         protected override void Seed(ApplicationDbContext context)
         {
-            if(context.Products.Any())
+            if (context.Products.Any())
             {
                 return;
             }
      
             ICollection<Tag> tags = new List<Tag>()
             {
-                new Tag(){ Name = "Вълна" },
-                new Tag(){ Name = "Коприна" },
-                new Tag(){ Name = "Сатен" },
-                new Tag(){ Name = "Дантела" },
-                new Tag(){ Name = "Полиестер" },
-                new Tag(){ Name = "Памук" }
+                new Tag() { Name = "Вълна" },
+                new Tag() { Name = "Коприна" },
+                new Tag() { Name = "Сатен" },
+                new Tag() { Name = "Дантела" },
+                new Tag() { Name = "Полиестер" },
+                new Tag() { Name = "Памук" }
             };
 
             foreach (var tag in tags)
@@ -40,7 +40,7 @@ namespace FabricStore.Data.Migrations
 
             IList<Category> categories = new List<Category>()
             {
-                new Category(){ Name = "Denim" },
+                new Category() { Name = "Denim" },
                 new Category() { Name = "Clouth" },
                 new Category() { Name = "Camoflague" }
             };
@@ -65,11 +65,8 @@ namespace FabricStore.Data.Migrations
                 });
             }
 
-
             context.Products.AddOrUpdate(products.ToArray());
-           
             context.SaveChanges();
-            //this.Seed(context);
         }
     }
 }

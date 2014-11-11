@@ -1,11 +1,11 @@
 ﻿namespace FabricStore.Web.Models
 {
-    using FabricStore.Models;
-    using FabricStore.Web.Infrastructure.Mapping;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using FabricStore.Models;
+    using FabricStore.Web.Infrastructure.Mapping;
 
     public class ProductHomeViewModel : IMapFrom<Product>
     {

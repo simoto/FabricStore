@@ -9,11 +9,11 @@
 
     public class BaseController : Controller
     {
-        protected IUowData Data;
+        protected IUowData data;
 
         public BaseController(IUowData data)
         {
-            this.Data = data;
+            this.data = data;
         }
 
         public BaseController()
