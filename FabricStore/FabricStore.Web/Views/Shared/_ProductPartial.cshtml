@@ -2,10 +2,9 @@
 
 <div class="col-sm-5 col-md-3">
     <div class="thumbnail">
+        <h3 class="modal-header">@Model.Name</h3>
             <img src="@Url.Action("GetImage", "Home", new { id = Model.Id })" alt="@Model.Name" class="img-responsive img-thumbnail" style="width:70%; height:70%" />
-        <div class="caption">
-            <h3>@Model.Name</h3>
-            <p>...</p>
+        <div class="caption">            
             <p>
                 <a href="@Url.Action("Details", "Products", new { Model.Id })" class="btn btn-primary" role="button">View</a>
                 <button class="btn btn-primary" type="button">
