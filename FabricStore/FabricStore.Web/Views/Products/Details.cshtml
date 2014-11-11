@@ -23,7 +23,7 @@
                 <div class="col-md-6">
                     <address>
                         <strong>Manufacturer:</strong> <span>@Model.Manufacturer.Name</span><br>
-                        <strong>Category:</strong> <span>@Model.Category.Name</span><br>
+                        <strong>Category:</strong> <span>@Html.ActionLink(@Model.Category.Name, "Details", "Categories", new { id = @Model.Category.Id }, null)</span><br>
                     </address>
                 </div>
                 <div class="col-md-6">
