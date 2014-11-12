@@ -58,11 +58,33 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,CategoryId,Image,Description,ManufacturerId,IsAvailable,AvailableAmount,DataAdded")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,CategoryId,Image,Description,ManufacturerId,IsAvailable,AvailableAmount,DataAdded")] ProductAdminCreateViewModel product)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                if (product.Image == null)
+                {
+                    ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+                    ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name", product.ManufacturerId);
+                    return View(product);
+                }
+
+                Product newProduct = new Product()
+                {
+                    Id = product.Id,
+                    CategoryId = product.CategoryId,
+                    Name = product.Name,
+                    Price = product.Price,
+                    AvailableAmount = product.AvailableAmount,
+                    DataAdded = product.DataAdded,
+                    Description = product.Description,
+                    IsAvailable = product.IsAvailable,
+                    ManufacturerId = product.ManufacturerId,
+                    Image = this.httpPostedFileToByteArray(product.Image)
+                };
+            
+                db.Products.Add(newProduct);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -110,8 +132,7 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Price,CategoryId,Image,Description,ManufacturerId,IsAvailable,AvailableAmount,DataAdded")] ProductAdminViewModel product)
-        {
-            
+        {            
             if (ModelState.IsValid)
             {
                 Product editedProduct = new Product()
