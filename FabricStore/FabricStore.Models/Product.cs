@@ -19,15 +19,18 @@
         public int Id { get; set; }
 
         [Required]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Required]
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
+        [DataType(DataType.Upload)]
         public byte[] Image { get; set; }
 
         [Required]
@@ -42,6 +45,7 @@
 
         public decimal AvailableAmount { get; set; }
 
+        [DataType(DataType.Time)]
         public DateTime DataAdded { get; set; }
 
         public virtual ICollection<Comment> Comments
