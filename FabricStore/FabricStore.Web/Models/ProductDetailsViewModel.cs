@@ -24,5 +24,9 @@
         public virtual Manufacturer Manufacturer { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Tag> Tags { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

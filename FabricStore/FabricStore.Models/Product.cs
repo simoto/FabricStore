@@ -1,5 +1,6 @@
 ﻿namespace FabricStore.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -30,9 +31,10 @@
         public byte[] Image { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        public int ManufactirerId { get; set; }
+        public int ManufacturerId { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
 
@@ -40,7 +42,7 @@
 
         public decimal AvailableAmount { get; set; }
 
-        public DataType DataAdded { get; set; }
+        public DateTime DataAdded { get; set; }
 
         public virtual ICollection<Comment> Comments
         {

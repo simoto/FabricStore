@@ -72,7 +72,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Ватата е плат който се използва предимно за изработката на някои спортни дрехи.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 200
+                AvailableAmount = 200,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Вата" },
+                    new Tag() { Name = "Двуконечнка" }
+                }
             });
             products.Add(new Product()
             {
@@ -83,7 +89,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Ватата е плат който се използва предимно за изработката на някои спортни дрехи.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 150
+                AvailableAmount = 150,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Полиестер" },
+                    new Tag() { Name = "Вата" }
+                }
             });
             products.Add(new Product()
             {
@@ -94,7 +106,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Вискоза с и без ликра – често се използва за изработката на рокли, вечерно облекло, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 250
+                AvailableAmount = 250,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Вискоза" },
+                    new Tag() { Name = "Синя" }
+                }
             });
             products.Add(new Product()
             {
@@ -105,7 +123,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Вискоза с и без ликра – често се използва за изработката на рокли, вечерно облекло, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 220
+                AvailableAmount = 220,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Вискоза" },
+                    new Tag() { Name = "Ликра" }
+                }
             });
             products.Add(new Product()
             {
@@ -116,7 +140,12 @@ namespace FabricStore.Data.Migrations
                 Description = "Вълната се използва за направата на топли дрехи подходящи за зимния сезон.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 250
+                AvailableAmount = 250,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Вълна" }
+                }
             });
             products.Add(new Product()
             {
@@ -127,7 +156,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Този плат се използва предимно за чанти, обувки, колани и други аксесоари.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 100
+                AvailableAmount = 100,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Кожа" },
+                    new Tag() { Name = "Плат" }
+                }
             });
             products.Add(new Product()
             {
@@ -138,7 +173,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Плюшът е плат, който се използва за спортно облекло, пижами, зимни дрехи и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 130
+                AvailableAmount = 130,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Плюш" },
+                    new Tag() { Name = "Спорт" }
+                }
             });
             products.Add(new Product()
             {
@@ -149,7 +190,13 @@ namespace FabricStore.Data.Migrations
                 Description = "100% ПАМУК се използва предимно за изработката на детски дрехи, пижами, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 140
+                AvailableAmount = 140,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Памук" },
+                    new Tag() { Name = "Райета" }
+                }
             });
             products.Add(new Product()
             {
@@ -160,7 +207,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Полиестерът е плат който се използва за изработката на тениски, рокли, бельо и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 150
+                AvailableAmount = 150,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Полиестер" },
+                    new Tag() { Name = "Щампа" }
+                }
             });
             products.Add(new Product()
             {
@@ -171,7 +224,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Няма описание",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 150
+                AvailableAmount = 150,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Цветни" },
+                    new Tag() { Name = "Полиамид" }
+                }
             });
             products.Add(new Product()
             {
@@ -182,7 +241,13 @@ namespace FabricStore.Data.Migrations
                 Description = "Няма описание",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
-                AvailableAmount = 250
+                AvailableAmount = 250,
+                DataAdded = DateTime.Now,
+                Tags = new[] 
+                { 
+                    new Tag() { Name = "Бродиран" },
+                    new Tag() { Name = "Текстил" }
+                }
             });
 
             context.Products.AddOrUpdate(products.ToArray());

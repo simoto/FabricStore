@@ -23,13 +23,6 @@
             this.products = products;
         }
 
-        // GET: Products
-        public ActionResult Index()
-        {
-            var allProducts = this.products.All().Project().To<ProductHomeViewModel>();
-            return this.View(allProducts);
-        }
-
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
