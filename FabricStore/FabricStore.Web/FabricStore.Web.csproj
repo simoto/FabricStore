@@ -188,6 +188,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CommentsController.cs" />
     <Compile Include="Areas\Administration\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Administration\Models\ProductAdminCreateViewModel.cs" />
     <Compile Include="Areas\Administration\Models\ProductAdminViewModel.cs" />
@@ -234,6 +235,11 @@
     <Content Include="Areas\Administration\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Administration\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Delete.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Comments\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
