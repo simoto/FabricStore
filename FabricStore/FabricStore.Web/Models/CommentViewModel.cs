@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using FabricStore.Models;
-using FabricStore.Web.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FabricStore.Web.Models
+﻿namespace FabricStore.Web.Models
 {
+    using System;
+
+    using AutoMapper;
+    using FabricStore.Models;
+    using FabricStore.Web.Infrastructure.Mapping;
+
     public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
     {
         public int Id { get; set; }
@@ -19,7 +17,6 @@ namespace FabricStore.Web.Models
         public string Content { get; set; }
 
         public DateTime DateCreated { get; set; }
-
 
         public void CreateMappings(IConfiguration configuration)
         {

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using FabricStore.Data;
-using FabricStore.Models;
-using AutoMapper.QueryableExtensions;
-using FabricStore.Web.Models;
-
-namespace FabricStore.Web.Controllers
+﻿namespace FabricStore.Web.Controllers
 {
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+    using FabricStore.Data;
+    using FabricStore.Models;
+    using FabricStore.Web.Models;
+
     public class CategoriesController : BaseController
     {
         private IRepository<Category> categories;
@@ -26,7 +22,7 @@ namespace FabricStore.Web.Controllers
         public ActionResult Index()
         {
             var allCategories = this.categories.All().Project().To<CategoryViewModel>();
-            return View(allCategories);
+            return this.View(allCategories);
         }
 
         // GET: Categories/Details/5
@@ -42,10 +38,10 @@ namespace FabricStore.Web.Controllers
 
             if (allCategoryProducts == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
 
-            return View(allCategoryProducts);
+            return this.View(allCategoryProducts);
         }
     }
 }

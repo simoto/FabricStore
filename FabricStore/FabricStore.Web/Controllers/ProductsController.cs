@@ -1,13 +1,10 @@
 ﻿namespace FabricStore.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Data.Entity;
     using System.Linq;
     using System.Net;
-    using System.Web;
     using System.Web.Mvc;
+
     using AutoMapper.QueryableExtensions;
     using FabricStore.Data;
     using FabricStore.Models;
@@ -56,17 +53,17 @@
             return this.View(viewModel);
         }
 
+        public ActionResult GetImage(int id)
+        {
+            byte[] image = this.products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id).Image;
+            return this.File(image, "image/jpg");
+        }
+
         private IQueryable<ProductHomeViewModel> GetAllProducts()
         {
             var data = this.products.All().Project().To<ProductHomeViewModel>().OrderBy(x => x.Id);
 
             return data;
-        }
-
-        public ActionResult GetImage(int id)
-        {
-            byte[] image = products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id).Image;
-            return File(image, "image/jpg");
         }
     }
 }

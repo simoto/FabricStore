@@ -17,7 +17,7 @@
                 name: "Public Products",
                 url: "Products/{action}/{id}",
                 defaults: new { controller = "Products", action = "List", id = UrlParameter.Optional },
-                namespaces: new [] {"FabricStore.Web.Controllers"});
+                namespaces: new[] { "FabricStore.Web.Controllers" });
 
             routes.MapRoute(
                 name: "Default",

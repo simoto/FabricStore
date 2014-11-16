@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using FabricStore.Data;
-using FabricStore.Models;
-
-namespace FabricStore.Web.Areas.Administration.Controllers
+﻿namespace FabricStore.Web.Areas.Administration.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+
+    using FabricStore.Data;
+    using FabricStore.Models;
+
+    [Authorize(Roles = "Admin")]
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,8 +16,8 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         // GET: Administration/Comments
         public ActionResult Index()
         {
-            var comments = db.Comments.Include(c => c.Author).Include(c => c.Product);
-            return View(comments.ToList());
+            var comments = this.db.Comments.Include(c => c.Author).Include(c => c.Product);
+            return this.View(comments.ToList());
         }
 
         // GET: Administration/Comments/Details/5
@@ -29,20 +27,22 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
+
+            Comment comment = this.db.Comments.Find(id);
             if (comment == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(comment);
+
+            return this.View(comment);
         }
 
         // GET: Administration/Comments/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Email");
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name");
-            return View();
+            ViewBag.AuthorId = new SelectList(this.db.Users, "Id", "Email");
+            ViewBag.ProductId = new SelectList(this.db.Products, "Id", "Name");
+            return this.View();
         }
 
         // POST: Administration/Comments/Create
@@ -54,14 +54,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Comments.Add(comment);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Email", comment.AuthorId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", comment.ProductId);
-            return View(comment);
+            ViewBag.AuthorId = new SelectList(this.db.Users, "Id", "Email", comment.AuthorId);
+            ViewBag.ProductId = new SelectList(this.db.Products, "Id", "Name", comment.ProductId);
+            return this.View(comment);
         }
 
         // GET: Administration/Comments/Edit/5
@@ -71,14 +71,16 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
+
+            Comment comment = this.db.Comments.Find(id);
             if (comment == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Email", comment.AuthorId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", comment.ProductId);
-            return View(comment);
+
+            ViewBag.AuthorId = new SelectList(this.db.Users, "Id", "Email", comment.AuthorId);
+            ViewBag.ProductId = new SelectList(this.db.Products, "Id", "Name", comment.ProductId);
+            return this.View(comment);
         }
 
         // POST: Administration/Comments/Edit/5
@@ -90,13 +92,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(comment).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Email", comment.AuthorId);
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "Name", comment.ProductId);
-            return View(comment);
+
+            ViewBag.AuthorId = new SelectList(this.db.Users, "Id", "Email", comment.AuthorId);
+            ViewBag.ProductId = new SelectList(this.db.Products, "Id", "Name", comment.ProductId);
+            return this.View(comment);
         }
 
         // GET: Administration/Comments/Delete/5
@@ -106,12 +109,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
+
+            Comment comment = this.db.Comments.Find(id);
             if (comment == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(comment);
+
+            return this.View(comment);
         }
 
         // POST: Administration/Comments/Delete/5
@@ -119,18 +124,19 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Comment comment = db.Comments.Find(id);
-            db.Comments.Remove(comment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Comment comment = this.db.Comments.Find(id);
+            this.db.Comments.Remove(comment);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

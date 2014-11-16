@@ -1,9 +1,12 @@
 ﻿namespace FabricStore.Web
 {
     using System;
+
     using FabricStore.Data;
     using FabricStore.Models;
     using FabricStore.Web.Models;
+    using FabricStore.Web.Services;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;

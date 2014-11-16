@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using FabricStore.Models;
+using FabricStore.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using FabricStore.Web.Models;
-using FabricStore.Models;
 
 namespace FabricStore.Web.Controllers
 {
@@ -24,12 +24,14 @@ namespace FabricStore.Web.Controllers
         }
 
         private ApplicationUserManager _userManager;
+
         public ApplicationUserManager UserManager
         {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
@@ -81,12 +83,14 @@ namespace FabricStore.Web.Controllers
                 {
                     await SignInAsync(user, isPersistent: false);
                 }
+
                 message = ManageMessageId.RemoveLoginSuccess;
             }
             else
             {
                 message = ManageMessageId.Error;
             }
+
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
@@ -114,8 +118,10 @@ namespace FabricStore.Web.Controllers
                     Destination = model.Number,
                     Body = "Your security code is: " + code
                 };
+
                 await UserManager.SmsService.SendAsync(message);
             }
+
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
@@ -129,6 +135,7 @@ namespace FabricStore.Web.Controllers
             {
                 await SignInAsync(user, isPersistent: false);
             }
+
             return RedirectToAction("Index", "Manage");
         }
 
@@ -142,6 +149,7 @@ namespace FabricStore.Web.Controllers
             {
                 await SignInAsync(user, isPersistent: false);
             }
+
             return RedirectToAction("Index", "Manage");
         }
 
@@ -149,7 +157,7 @@ namespace FabricStore.Web.Controllers
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            // Send an SMS through the SMS provider to verify the phone number
+            //// Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
@@ -162,6 +170,7 @@ namespace FabricStore.Web.Controllers
             {
                 return View(model);
             }
+
             var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
             if (result.Succeeded)
             {
@@ -170,6 +179,7 @@ namespace FabricStore.Web.Controllers
                 {
                     await SignInAsync(user, isPersistent: false);
                 }
+
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             //// If we got this far, something failed, redisplay form
@@ -185,11 +195,13 @@ namespace FabricStore.Web.Controllers
             {
                 return RedirectToAction("Index", new { Message = ManageMessageId.Error });
             }
+
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
             }
+
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
@@ -208,6 +220,7 @@ namespace FabricStore.Web.Controllers
             {
                 return View(model);
             }
+
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
@@ -216,8 +229,10 @@ namespace FabricStore.Web.Controllers
                 {
                     await SignInAsync(user, isPersistent: false);
                 }
+
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
+
             AddErrors(result);
             return View(model);
         }
@@ -243,8 +258,10 @@ namespace FabricStore.Web.Controllers
                     {
                         await SignInAsync(user, isPersistent: false);
                     }
+
                     return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
                 }
+
                 AddErrors(result);
             }
 
@@ -255,8 +272,7 @@ namespace FabricStore.Web.Controllers
         //// GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+            ViewBag.StatusMessage = message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : string.Empty;
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -264,6 +280,7 @@ namespace FabricStore.Web.Controllers
             {
                 return View("Error");
             }
+
             var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
@@ -291,6 +308,7 @@ namespace FabricStore.Web.Controllers
             {
                 return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
+
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
@@ -328,6 +346,7 @@ namespace FabricStore.Web.Controllers
             {
                 return user.PasswordHash != null;
             }
+
             return false;
         }
 
@@ -338,6 +357,7 @@ namespace FabricStore.Web.Controllers
             {
                 return user.PhoneNumber != null;
             }
+
             return false;
         }
 

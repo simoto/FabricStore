@@ -1,12 +1,11 @@
-﻿using FabricStore.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace FabricStore.Web.Areas.Administration.Models
+﻿namespace FabricStore.Web.Areas.Administration.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
+    using FabricStore.Models;
+
     public class ProductAdminCreateViewModel
     {
         public int Id { get; set; }

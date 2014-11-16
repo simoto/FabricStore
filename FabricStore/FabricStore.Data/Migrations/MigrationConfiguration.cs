@@ -3,14 +3,15 @@ namespace FabricStore.Data.Migrations
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using FabricStore.Models;
     using System.IO;
-    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Linq;
+
+    using FabricStore.Models;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public sealed class MigrationConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -61,7 +62,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Двуконечна вата",
                 Price = 11.00m,
                 Category = categories[0],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Ватата е плат който се използва предимно за изработката на някои спортни дрехи.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -78,7 +79,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Вата полиестер",
                 Price = 8.00m,
                 Category = categories[0],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Ватата е плат който се използва предимно за изработката на някои спортни дрехи.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -95,7 +96,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Вискоза синя",
                 Price = 10.00m,
                 Category = categories[1],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Вискоза с и без ликра – често се използва за изработката на рокли, вечерно облекло, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -112,7 +113,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Вискоза ликра",
                 Price = 12.00m,
                 Category = categories[1],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Вискоза с и без ликра – често се използва за изработката на рокли, вечерно облекло, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -129,7 +130,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Вълна",
                 Price = 9.00m,
                 Category = categories[2],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Вълната се използва за направата на топли дрехи подходящи за зимния сезон.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -145,7 +146,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Кожа",
                 Price = 14.00m,
                 Category = categories[3],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Този плат се използва предимно за чанти, обувки, колани и други аксесоари.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -162,7 +163,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Плюш",
                 Price = 15.00m,
                 Category = categories[4],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Плюшът е плат, който се използва за спортно облекло, пижами, зимни дрехи и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -179,7 +180,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Памук на райета",
                 Price = 5.00m,
                 Category = categories[5],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "100% ПАМУК се използва предимно за изработката на детски дрехи, пижами, тениски и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -196,7 +197,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Полиестер щампа",
                 Price = 7.00m,
                 Category = categories[6],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Полиестерът е плат който се използва за изработката на тениски, рокли, бельо и т.н.",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -213,7 +214,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Цветни полиамиди",
                 Price = 8.00m,
                 Category = categories[7],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Няма описание",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -230,7 +231,7 @@ namespace FabricStore.Data.Migrations
                 Name = "Бродиран текстил",
                 Price = 8.00m,
                 Category = categories[8],
-                Image = this.imageToByteArray(image),
+                Image = this.ImageToByteArray(image),
                 Description = "Няма описание",
                 Manufacturer = manufacturer,
                 IsAvailable = true,
@@ -262,7 +263,7 @@ namespace FabricStore.Data.Migrations
             foreach (var tag in tags)
             {
                 context.Tags.Add(tag);
-            };
+            }
 
             context.SaveChanges();
         }
@@ -291,7 +292,7 @@ namespace FabricStore.Data.Migrations
             this.userManager.AddToRole(adminUser.Id, "Admin");
         }
 
-        private byte[] imageToByteArray(Image imageIn)
+        private byte[] ImageToByteArray(Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, ImageFormat.Gif);

@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using FabricStore.Data;
-using FabricStore.Models;
-using FabricStore.Web.Areas.Administration.Models;
-using AutoMapper.QueryableExtensions;
-using System.IO;
-using System.Drawing;
-
-namespace FabricStore.Web.Areas.Administration.Controllers
+﻿namespace FabricStore.Web.Areas.Administration.Controllers
 {
-    //[Authorize(Roles="Admin")]
+    using System.Data.Entity;
+    using System.Drawing;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using FabricStore.Data;
+    using FabricStore.Models;
+    using FabricStore.Web.Areas.Administration.Models;
+
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,8 +20,8 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         // GET: Administration/Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
-            return View(products.ToList());
+            var products = this.db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
+            return this.View(products.ToList());
         }
 
         // GET: Administration/Products/Details/5
@@ -34,23 +31,22 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
 
+            Product product = this.db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
 
-
-            return View(product);
+            return this.View(product);
         }
 
         // GET: Administration/Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name");
-            return View();
+            ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name");
+            ViewBag.ManufacturerId = new SelectList(this.db.Manufacturers, "Id", "Name");
+            return this.View();
         }
 
         // POST: Administration/Products/Create
@@ -59,15 +55,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Price,CategoryId,Image,Description,ManufacturerId,IsAvailable,AvailableAmount,DataAdded")] ProductAdminCreateViewModel product)
-        {
-            
+        {           
             if (ModelState.IsValid)
             {
                 if (product.Image == null)
                 {
-                    ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-                    ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name", product.ManufacturerId);
-                    return View(product);
+                    ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+                    ViewBag.ManufacturerId = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
+                    return this.View(product);
                 }
 
                 Product newProduct = new Product()
@@ -81,17 +76,17 @@ namespace FabricStore.Web.Areas.Administration.Controllers
                     Description = product.Description,
                     IsAvailable = product.IsAvailable,
                     ManufacturerId = product.ManufacturerId,
-                    Image = this.httpPostedFileToByteArray(product.Image)
+                    Image = this.HttpPostedFileToByteArray(product.Image)
                 };
-            
-                db.Products.Add(newProduct);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                this.db.Products.Add(newProduct);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name", product.ManufacturerId);
-            return View(product);
+            ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
+            return this.View(product);
         }
 
         // GET: Administration/Products/Edit/5
@@ -101,7 +96,8 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+
+            Product product = this.db.Products.Find(id);
             ProductAdminViewModel current = new ProductAdminViewModel()
             {
                 Id = product.Id,
@@ -118,12 +114,12 @@ namespace FabricStore.Web.Areas.Administration.Controllers
 
             if (product == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-           
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name", product.ManufacturerId);
-            return View(current);
+
+            ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
+            return this.View(current);
         }
 
         // POST: Administration/Products/Edit/5
@@ -150,7 +146,7 @@ namespace FabricStore.Web.Areas.Administration.Controllers
 
                 if (product.Image == null)
                 {
-                    var currentProduct = db.Products.Find(product.Id);
+                    var currentProduct = this.db.Products.Find(product.Id);
                     currentProduct.Id = product.Id;
                     currentProduct.CategoryId = product.CategoryId;
                     currentProduct.Name = product.Name;
@@ -160,19 +156,20 @@ namespace FabricStore.Web.Areas.Administration.Controllers
                     currentProduct.Description = product.Description;
                     currentProduct.IsAvailable = product.IsAvailable;
                     currentProduct.ManufacturerId = product.ManufacturerId;
-                    db.Entry(currentProduct).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    this.db.Entry(currentProduct).State = EntityState.Modified;
+                    this.db.SaveChanges();
+                    return this.RedirectToAction("Index");
                 }
 
-                editedProduct.Image = this.httpPostedFileToByteArray(product.Image);
-                db.Entry(editedProduct).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                editedProduct.Image = this.HttpPostedFileToByteArray(product.Image);
+                this.db.Entry(editedProduct).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ManufacturerId = new SelectList(db.Manufacturers, "Id", "Name", product.ManufacturerId);
-            return View(product);
+
+            ViewBag.CategoryId = new SelectList(this.db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.ManufacturerId = new SelectList(this.db.Manufacturers, "Id", "Name", product.ManufacturerId);
+            return this.View(product);
         }
 
         // GET: Administration/Products/Delete/5
@@ -182,12 +179,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+
+            Product product = this.db.Products.Find(id);
             if (product == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(product);
+
+            return this.View(product);
         }
 
         // POST: Administration/Products/Delete/5
@@ -195,35 +194,36 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Product product = this.db.Products.Find(id);
+            this.db.Products.Remove(product);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         public ActionResult GetImage(int id)
         {
             byte[] image = this.db.Products.FirstOrDefault(x => x.Id == id).Image;
-            return File(image, "image/jpg");
+            return this.File(image, "image/jpg");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
-        private Image byteArrayToImage(byte[] byteArrayIn)
+        private Image ByteArrayToImage(byte[] byteArrayIn)
         {
             MemoryStream ms = new MemoryStream(byteArrayIn);
             Image returnImage = Image.FromStream(ms);
             return returnImage;
         }
 
-        private byte[] httpPostedFileToByteArray(HttpPostedFileBase file)
+        private byte[] HttpPostedFileToByteArray(HttpPostedFileBase file)
         {
             byte[] data;
             using (Stream inputStream = file.InputStream)
@@ -234,6 +234,7 @@ namespace FabricStore.Web.Areas.Administration.Controllers
                     memoryStream = new MemoryStream();
                     inputStream.CopyTo(memoryStream);
                 }
+
                 data = memoryStream.ToArray();
             }
 

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using FabricStore.Data;
-using FabricStore.Models;
-
-namespace FabricStore.Web.Areas.Administration.Controllers
+﻿namespace FabricStore.Web.Areas.Administration.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+
+    using FabricStore.Data;
+    using FabricStore.Models;
+
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,7 +16,7 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         // GET: Administration/Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return this.View(this.db.Categories.ToList());
         }
 
         // GET: Administration/Categories/Details/5
@@ -28,18 +26,20 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+
+            Category category = this.db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(category);
+
+            return this.View(category);
         }
 
         // GET: Administration/Categories/Create
         public ActionResult Create()
         {
-            return View();
+            return this.View();
         }
 
         // POST: Administration/Categories/Create
@@ -51,12 +51,12 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Categories.Add(category);
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
 
-            return View(category);
+            return this.View(category);
         }
 
         // GET: Administration/Categories/Edit/5
@@ -66,12 +66,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+
+            Category category = this.db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(category);
+
+            return this.View(category);
         }
 
         // POST: Administration/Categories/Edit/5
@@ -83,11 +85,12 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                this.db.Entry(category).State = EntityState.Modified;
+                this.db.SaveChanges();
+                return this.RedirectToAction("Index");
             }
-            return View(category);
+
+            return this.View(category);
         }
 
         // GET: Administration/Categories/Delete/5
@@ -97,12 +100,14 @@ namespace FabricStore.Web.Areas.Administration.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+
+            Category category = this.db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
-            return View(category);
+
+            return this.View(category);
         }
 
         // POST: Administration/Categories/Delete/5
@@ -110,18 +115,19 @@ namespace FabricStore.Web.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Category category = this.db.Categories.Find(id);
+            this.db.Categories.Remove(category);
+            this.db.SaveChanges();
+            return this.RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                this.db.Dispose();
             }
+
             base.Dispose(disposing);
         }
     }

@@ -1,18 +1,15 @@
-﻿using FabricStore.Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-using FabricStore.Data.Migrations;
-using FabricStore.Web.Infrastructure.Mapping;
-using System.Reflection;
-
-namespace FabricStore.Web
+﻿namespace FabricStore.Web
 {
+    using System.Data.Entity;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
+    using FabricStore.Data;
+    using FabricStore.Data.Migrations;
+    using FabricStore.Web.Infrastructure.Mapping;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
