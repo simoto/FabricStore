@@ -1,0 +1,38 @@
+﻿@using FabricStore.Web.Areas.Users.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Products</h2>
+<div class="row">
+    @(Html.Kendo().ListView<FabricStore.Web.Areas.Users.Models.ListProductViewModel>()
+    .Name("all-products")
+    .TagName("div")
+    .Pageable()
+    .ClientTemplateId("all-products-template")
+    .DataSource(dataSource =>
+    {
+        dataSource
+            .ServerOperation(true)
+            .PageSize(3)
+            .Read("ReadProducts", "Products", new { area = "Users" });
+
+    }))
+</div>
+
+ <script id="all-products-template" type="text/x-kendo-tmpl">
+    <div class="col-sm-5 col-md-3">
+        <div class="thumbnail">
+            <h3 class="modal-header">#= Name #</h3>
+            <img src="/Home/GetImage/#= Id #" alt="#= Name #" class="img-responsive img-thumbnail" style="width:70%; height:70%" />
+            <div class="caption">
+                <p>
+                    <a href="/Products/Details/#= Id #" class="btn btn-primary" role="button">View</a>
+                    <button class="btn btn-primary" type="button">
+                        Price: <span class="badge">$#= Price #</span>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
