@@ -1,0 +1,14 @@
+﻿@model FabricStore.Web.Models.PostCommentViewModel
+@using (Ajax.BeginForm("PostComment", new { Controller = "Comments", area = string.Empty },
+                                new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    InsertionMode = InsertionMode.InsertBefore,
+                                    UpdateTargetId = "comments"
+                                }, null))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(p => p.ProductId)
+    @Html.EditorFor(x => x.Content)
+    <input type="submit" class="btn btn-default" />
+}

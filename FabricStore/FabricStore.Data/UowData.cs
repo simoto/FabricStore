@@ -45,6 +45,11 @@
             get { return this.GetRepository<Tag>(); }
         }
 
+        public IRepository<ApplicationUser> Users
+        {
+            get { return this.GetRepository<ApplicationUser>(); }
+        }
+
         public int SaveChanges()
         {
             return this.context.SaveChanges();
@@ -65,6 +70,6 @@
             }
 
             return (IRepository<T>)this.repositories[typeof(T)];
-        }       
+        }        
     }
 }

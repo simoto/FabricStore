@@ -14,6 +14,12 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Product Comments",
+                url: "Comments/{action}/{id}",
+                defaults: new { controller = "Comments", id = UrlParameter.Optional },
+                namespaces: new[] { "FabricStore.Web.Controllers" });
+
+            routes.MapRoute(
                 name: "Public Products",
                 url: "Products/{action}/{id}",
                 defaults: new { controller = "Products", action = "List", id = UrlParameter.Optional },

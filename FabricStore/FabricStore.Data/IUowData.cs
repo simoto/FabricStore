@@ -14,6 +14,8 @@
 
         IRepository<Tag> Tags { get; }
 
+        IRepository<ApplicationUser> Users { get; }
+
         int SaveChanges();
     }
 }
