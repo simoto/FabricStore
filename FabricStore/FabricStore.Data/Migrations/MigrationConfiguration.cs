@@ -9,9 +9,13 @@ namespace FabricStore.Data.Migrations
     using System.Linq;
     using FabricStore.Models;
     using System.IO;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity;
 
     public sealed class MigrationConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
     {
+        private UserManager<ApplicationUser> userManager;
+
         public MigrationConfiguration()
         {
             this.AutomaticMigrationsEnabled = true;
@@ -26,21 +30,15 @@ namespace FabricStore.Data.Migrations
                 return;
             }
 
-            ICollection<Tag> tags = new List<Tag>()
-            {
-                new Tag() { Name = "вълна" },
-                new Tag() { Name = "Коприна" },
-                new Tag() { Name = "Сатен" },
-                new Tag() { Name = "Дантела" },
-                new Tag() { Name = "Полиестер" },
-                new Tag() { Name = "Памук" }
-            };
+            this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            this.SeedRoles(context);
+            this.SeedUsers(context);
+            this.SeedCategoriesWithProducts(context);
+            this.SeedTags(context);          
+        }
 
-            foreach (var tag in tags)
-            {
-                context.Tags.Add(tag);
-            }
-
+        private void SeedCategoriesWithProducts(ApplicationDbContext context)
+        {
             IList<Category> categories = new List<Category>()
             {
                 new Category() { Name = "Вата" },
@@ -52,17 +50,12 @@ namespace FabricStore.Data.Migrations
                 new Category() { Name = "Полиестер" },
                 new Category() { Name = "Ликра" },
                 new Category() { Name = "Текстил" }
-
             };
 
             Manufacturer manufacturer = new Manufacturer() { Name = "US Fabric" };
-
-            ApplicationUser user = new ApplicationUser() { UserName = "test", Email = "test@test.test" };
-
             var image = new Bitmap(Image.FromFile("C:/Temps/vikoza.jpg"));
 
             List<Product> products = new List<Product>();
-
             products.Add(new Product()
             {
                 Name = "Двуконечна вата",
@@ -252,6 +245,50 @@ namespace FabricStore.Data.Migrations
 
             context.Products.AddOrUpdate(products.ToArray());
             context.SaveChanges();
+        }
+
+        private void SeedTags(ApplicationDbContext context)
+        {
+            ICollection<Tag> tags = new List<Tag>()
+            {
+                new Tag() { Name = "вълна" },
+                new Tag() { Name = "Коприна" },
+                new Tag() { Name = "Сатен" },
+                new Tag() { Name = "Дантела" },
+                new Tag() { Name = "Полиестер" },
+                new Tag() { Name = "Памук" }
+            };
+
+            foreach (var tag in tags)
+            {
+                context.Tags.Add(tag);
+            };
+
+            context.SaveChanges();
+        }
+
+        private void SeedRoles(ApplicationDbContext context)
+        {
+            context.Roles.AddOrUpdate(x => x.Name, new IdentityRole("Admin"));
+            context.SaveChanges();
+        }
+
+        private void SeedUsers(ApplicationDbContext context)
+        {
+            if (context.Users.Any())
+            {
+                return;
+            }
+
+            var adminUser = new ApplicationUser
+            {
+                Email = "admin@example.com",
+                UserName = "admin@example.com"
+            };
+
+            this.userManager.Create(adminUser, "admin123456");
+
+            this.userManager.AddToRole(adminUser.Id, "Admin");
         }
 
         private byte[] imageToByteArray(Image imageIn)
