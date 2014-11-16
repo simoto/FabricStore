@@ -52,6 +52,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <h3>Comments:</h3>
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="row table-bordered">
+                                <h4>By: @comment.AuthorName</h4>
+                                <p>@comment.Content</p>
+                                <p>@comment.DateCreated</p>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
             

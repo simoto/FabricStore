@@ -6,6 +6,8 @@
     using System.Web;
     using FabricStore.Models;
     using FabricStore.Web.Infrastructure.Mapping;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     public class ProductDetailsViewModel : IMapFrom<Product>
     {
@@ -27,6 +29,6 @@
 
         public virtual ICollection<Tag> Tags { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<CommentViewModel> Comments { get; set; }
     }
 }

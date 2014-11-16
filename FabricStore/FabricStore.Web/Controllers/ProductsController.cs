@@ -31,12 +31,15 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ProductDetailsViewModel product = this.products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id);
+            var product = this.products.All().Where(x => x.Id == id).Project().To<ProductDetailsViewModel>().FirstOrDefault();
             if (product == null)
             {
                 return this.HttpNotFound();
             }
 
+            var comments = this.data.Comments.All().Where(x => x.Product.Id == id).Project().To<CommentViewModel>().ToArray();
+
+            product.Comments = comments;
             var categories = this.data.Categories.All().Project().To<CategoryViewModel>();
 
             this.ViewData.Add("Categories", categories);
