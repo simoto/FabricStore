@@ -1,15 +1,12 @@
-﻿using FabricStore.Data;
-using FabricStore.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using FabricStore.Models;
-
-namespace FabricStore.Web.Controllers
+﻿namespace FabricStore.Web.Controllers
 {
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
+    using FabricStore.Data;
+    using FabricStore.Models;
+    using FabricStore.Web.Models;
+
     public class CommentsController : BaseController
     {
         public CommentsController(IUowData data)
@@ -23,24 +20,21 @@ namespace FabricStore.Web.Controllers
         {
             if (comment != null && ModelState.IsValid)
             {
-
-                Comment dbComment = new Comment();
-                dbComment.Content = comment.Content;
-                dbComment.ProductId = comment.ProductId;
-                dbComment.Author = this.UserProfile;
-                dbComment.DateCreated = DateTime.Now;
+                Comment databaseComment = new Comment();
+                databaseComment.Content = comment.Content;
+                databaseComment.ProductId = comment.ProductId;
+                databaseComment.Author = this.UserProfile;
+                databaseComment.DateCreated = DateTime.Now;
                 var product = this.data.Products.GetById(comment.ProductId);
                 if (product == null)
                 {
                     throw new HttpException(404, "Product not found!");
                 }
 
-                product.Comments.Add(dbComment);
+                product.Comments.Add(databaseComment);
                 this.data.SaveChanges();
 
-                var viewComment = Mapper.Map<CommentViewModel>(dbComment);
-
-                return RedirectToAction("Details", new { Controller = "Products", area = string.Empty, id = comment.ProductId});
+                return this.RedirectToAction("Details", new { Controller = "Products", area = string.Empty, id = comment.ProductId });
             }
 
             throw new HttpException(400, "Invalid comment");

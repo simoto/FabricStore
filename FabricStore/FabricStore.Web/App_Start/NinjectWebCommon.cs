@@ -13,7 +13,7 @@ namespace FabricStore.Web.App_Start
 
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper BootStrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -22,7 +22,7 @@ namespace FabricStore.Web.App_Start
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            BootStrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -30,7 +30,7 @@ namespace FabricStore.Web.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            BootStrapper.ShutDown();
         }
         
         /// <summary>

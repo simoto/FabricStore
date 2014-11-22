@@ -1,13 +1,8 @@
 ﻿namespace FabricStore.Web.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
     using FabricStore.Models;
     using FabricStore.Web.Infrastructure.Mapping;
-    using AutoMapper;
-    using AutoMapper.QueryableExtensions;
 
     public class ProductDetailsViewModel : IMapFrom<Product>
     {

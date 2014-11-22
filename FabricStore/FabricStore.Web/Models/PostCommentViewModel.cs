@@ -1,14 +1,13 @@
 ﻿namespace FabricStore.Web.Models
 {
+    using System.ComponentModel.DataAnnotations;
     using FabricStore.Models;
     using FabricStore.Web.Infrastructure.Mapping;
-    using System.ComponentModel.DataAnnotations;
 
     public class PostCommentViewModel : IMapFrom<Comment>
     {
         public PostCommentViewModel()
         {
-
         }
 
         public PostCommentViewModel(int productId)

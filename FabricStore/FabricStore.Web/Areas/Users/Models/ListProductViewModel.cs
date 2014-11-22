@@ -1,12 +1,12 @@
-﻿using FabricStore.Models;
-using FabricStore.Web.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FabricStore.Web.Areas.Users.Models
+﻿namespace FabricStore.Web.Areas.Users.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using FabricStore.Models;
+    using FabricStore.Web.Infrastructure.Mapping;
+
     public class ListProductViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
         public int Id { get; set; }

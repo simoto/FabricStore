@@ -26,6 +26,12 @@
                 namespaces: new[] { "FabricStore.Web.Controllers" });
 
             routes.MapRoute(
+                name: "Public Categories",
+                url: "Categories/{action}/{id}",
+                defaults: new { controller = "Categories", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "FabricStore.Web.Controllers" });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });

@@ -5,6 +5,6 @@
     @for (int i = 0; i < @Model.Count(); i++)
     {
         var currentCategory = Model.ElementAt(i);
-        <li>@Html.ActionLink(currentCategory.Name, "Details", "Categories", new { id = currentCategory.Id }, null)</li>
+        <li>@Html.ActionLink(currentCategory.Name, "Details", "Categories", new { area = string.Empty, id = currentCategory.Id }, null)</li>
     }   
 </ul>

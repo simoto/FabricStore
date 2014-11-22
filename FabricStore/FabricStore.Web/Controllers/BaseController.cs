@@ -1,17 +1,15 @@
 ﻿namespace FabricStore.Web.Controllers
 {
-    using System.Web.Mvc;
-    using FabricStore.Data;
-    using FabricStore.Models;
     using System;
     using System.Linq;
+    using System.Web.Mvc;
     using System.Web.Routing;
+    using FabricStore.Data;
+    using FabricStore.Models;
 
     public class BaseController : Controller
     {
         protected IUowData data;
-
-        protected ApplicationUser UserProfile { get; private set; }
 
         public BaseController(IUowData data)
         {
@@ -22,6 +20,8 @@
             : this(new UowData())
         {
         }
+
+        protected ApplicationUser UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {

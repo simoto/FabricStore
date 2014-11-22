@@ -26,6 +26,7 @@
                         <strong>Category:</strong> <span>@Html.ActionLink(@Model.Category.Name, "Details", "Categories", new { id = @Model.Category.Id }, null)</span><br>
                     </address>
                     <div>
+                        <span><b>Tags:</b></span>
                        @foreach (var tag in Model.Tags)
                        {
                            <span>@tag.Name</span>
@@ -54,6 +55,7 @@
                     </div>                   
                     <div class="row">
                         <h3>Comments:</h3>
+                        
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="row">
