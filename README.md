@@ -10,8 +10,8 @@ Users can use product paging, selecting all item from given category and comment
 Administrators can create/edit/delete categories and products.
 
 <h3>Used technologies</h3>
-Server side: <b>ASP.NET MVC, Entity Framework</b>
-Client side: <b>HTML5, CSS3, JavaScript</b>
-Database: <b>MS SQL Server 2012</b>
+<p>Server side: <b>ASP.NET MVC, Entity Framework</b></p>
+<p>Client side: <b>HTML5, CSS3, JavaScript</b></p>
+<p>Database: <b>MS SQL Server 2012</b></p>
 <h3>Used components</h3> 
 <b>Razor, jQuery, Bootstrap, Entity Framework, Glimpse</b>
