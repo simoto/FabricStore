@@ -1,11 +1,12 @@
 ﻿namespace FabricStore.Web.Controllers
 {
+    using FabricStore.Data;
+    using FabricStore.Models;
+
     using System;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using FabricStore.Data;
-    using FabricStore.Models;
 
     public class BaseController : Controller
     {

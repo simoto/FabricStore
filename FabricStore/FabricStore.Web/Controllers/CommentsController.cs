@@ -1,11 +1,12 @@
 ﻿namespace FabricStore.Web.Controllers
 {
-    using System;
-    using System.Web;
-    using System.Web.Mvc;
     using FabricStore.Data;
     using FabricStore.Models;
     using FabricStore.Web.Models;
+
+    using System;
+    using System.Web;
+    using System.Web.Mvc;
 
     public class CommentsController : BaseController
     {

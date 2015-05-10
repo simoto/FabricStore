@@ -3,13 +3,14 @@
 
 namespace FabricStore.Web.App_Start
 {
-    using System;
-    using System.Data.Entity;
-    using System.Web;
     using FabricStore.Data;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+
+    using System;
+    using System.Data.Entity;
+    using System.Web;
 
     public static class NinjectWebCommon 
     {

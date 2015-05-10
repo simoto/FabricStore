@@ -1,16 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using FabricStore.Models;
+﻿using FabricStore.Models;
 using FabricStore.Web.Models;
+using FabricStore.Web.Services;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using FabricStore.Web.Services;
+
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace FabricStore.Web.Controllers
 {
