@@ -1,9 +1,10 @@
 ﻿namespace FabricStore.Data
 {
+    using FabricStore.Models;
+
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
-    using FabricStore.Models;
 
     public class UowData : IUowData
     {
@@ -11,7 +12,7 @@
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 
         public UowData()
-            : this(new ApplicationDbContext())
+            : this(new FabricStoreDbContext())
         {
         }
 

@@ -15,7 +15,7 @@
     [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private FabricStoreDbContext db = new FabricStoreDbContext();
 
         // GET: Administration/Products
         public ActionResult Index()

@@ -20,7 +20,7 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<ApplicationDbContext>(new MigrateDatabaseToLatestVersion<ApplicationDbContext, MigrationConfiguration>());
+            Database.SetInitializer<FabricStoreDbContext>(new MigrateDatabaseToLatestVersion<FabricStoreDbContext, MigrationConfiguration>());
 
             var automapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
             automapperConfig.Execute();

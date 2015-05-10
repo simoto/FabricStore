@@ -8,7 +8,7 @@
     public class GenericRepository<T> : IRepository<T> where T : class
     {
         public GenericRepository()
-            : this(new ApplicationDbContext())
+            : this(new FabricStoreDbContext())
         {
         }
 

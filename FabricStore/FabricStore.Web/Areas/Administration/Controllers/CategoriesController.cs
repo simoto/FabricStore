@@ -11,7 +11,7 @@
     [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private FabricStoreDbContext db = new FabricStoreDbContext();
 
         // GET: Administration/Categories
         public ActionResult Index()

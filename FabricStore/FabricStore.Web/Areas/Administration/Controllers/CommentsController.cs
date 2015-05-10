@@ -11,7 +11,7 @@
     [Authorize(Roles = "Admin")]
     public class CommentsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private FabricStoreDbContext db = new FabricStoreDbContext();
 
         // GET: Administration/Comments
         public ActionResult Index()

@@ -13,7 +13,7 @@ namespace FabricStore.Data.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public sealed class MigrationConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
+    public sealed class MigrationConfiguration : DbMigrationsConfiguration<FabricStoreDbContext>
     {
         private UserManager<ApplicationUser> userManager;
 
@@ -24,7 +24,7 @@ namespace FabricStore.Data.Migrations
             this.ContextKey = "FabricStore.Data.ApplicationDbContext";
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(FabricStoreDbContext context)
         {
             if (context.Products.Any())
             {
@@ -38,7 +38,7 @@ namespace FabricStore.Data.Migrations
             this.SeedTags(context);          
         }
 
-        private void SeedCategoriesWithProducts(ApplicationDbContext context)
+        private void SeedCategoriesWithProducts(FabricStoreDbContext context)
         {
             IList<Category> categories = new List<Category>()
             {
@@ -248,7 +248,7 @@ namespace FabricStore.Data.Migrations
             context.SaveChanges();
         }
 
-        private void SeedTags(ApplicationDbContext context)
+        private void SeedTags(FabricStoreDbContext context)
         {
             ICollection<Tag> tags = new List<Tag>()
             {
@@ -268,13 +268,13 @@ namespace FabricStore.Data.Migrations
             context.SaveChanges();
         }
 
-        private void SeedRoles(ApplicationDbContext context)
+        private void SeedRoles(FabricStoreDbContext context)
         {
             context.Roles.AddOrUpdate(x => x.Name, new IdentityRole("Admin"));
             context.SaveChanges();
         }
 
-        private void SeedUsers(ApplicationDbContext context)
+        private void SeedUsers(FabricStoreDbContext context)
         {
             if (context.Users.Any())
             {

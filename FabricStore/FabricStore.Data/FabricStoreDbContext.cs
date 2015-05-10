@@ -1,17 +1,12 @@
 ﻿namespace FabricStore.Data
 {
-    using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using FabricStore.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using FabricStore.Models;
     
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class FabricStoreDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public FabricStoreDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
@@ -26,9 +21,9 @@
 
         public IDbSet<Tag> Tags { get; set; }
 
-        public static ApplicationDbContext Create()
+        public static FabricStoreDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new FabricStoreDbContext();
         }
     }
 }
