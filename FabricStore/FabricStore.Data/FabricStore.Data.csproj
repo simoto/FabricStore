@@ -48,6 +48,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="FabricStoreDbContext.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="IRepository.cs" />

@@ -8,6 +8,7 @@ namespace FabricStore.Data.Migrations
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
+    using FabricStore.Data.Extensions;
 
     using FabricStore.Models;
     using Microsoft.AspNet.Identity;
@@ -54,7 +55,7 @@ namespace FabricStore.Data.Migrations
             };
 
             Manufacturer manufacturer = new Manufacturer() { Name = "US Fabric" };
-            var image = new Bitmap(Image.FromFile("C:/Temps/vikoza.jpg"));
+            var image = new Bitmap(Extensions.GetImageFromUrl(@"http://st.houzz.com/simgs/8af1647b0fd8d1e9_4-3533/contemporary-upholstery-fabric.jpg"));
 
             List<Product> products = new List<Product>();
             products.Add(new Product()
