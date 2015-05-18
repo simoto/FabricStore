@@ -28,20 +28,20 @@
 
         private static void AddBundleScripts(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            "~/Scripts/kendo/jquery.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
             "~/Scripts/kendo/kendo.web.min.js",
             "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-            "~/Scripts/kendo/jquery.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+            "~/Scripts/kendo/kendo.all.min.js",
+            "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
           "~/Scripts/bootstrap.js",
           "~/Scripts/respond.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-                        "~/Scripts/kendo/kendo.all.min.js",
-                        "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
             "~/Scripts/jquery.unobtrusive-ajax.js"));
