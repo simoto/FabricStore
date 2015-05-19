@@ -3,13 +3,21 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="well">
-    <h2>New products</h2>
+<div class="well">    
     <div class="row">
-        @for (int i = 0; i < Model.Count(); i++)
-        {
-            var product = Model.ElementAt(i);
-            @Html.Partial("_ProductPartial", product)                   
-        }
+        <div class="col-md-3">
+            @Html.Partial("_PartialPageCategories", @ViewData["Categories"])
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center">New products</h2>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                var product = Model.ElementAt(i);
+                @Html.Partial("_ProductPartial", product)
+            }
+        </div>
+        <div class="col-md-3">
+            @Html.Partial("_RightSideBar");
+        </div>
     </div>
 </div>

@@ -17,7 +17,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PostComment(PostCommentViewModel comment)
+        public JsonResult PostComment(PostCommentViewModel comment)
         {
             if (comment != null && ModelState.IsValid)
             {
@@ -35,10 +35,11 @@
                 product.Comments.Add(databaseComment);
                 this.data.SaveChanges();
 
-                return this.RedirectToAction("Details", new { Controller = "Products", area = string.Empty, id = comment.ProductId });
+                return Json(new { success = "true" }, JsonRequestBehavior.AllowGet);
+                //return this.RedirectToAction("Details", new { Controller = "Products", area = string.Empty, id = comment.ProductId });
             }
 
-            throw new HttpException(400, "Invalid comment");
+            return Json(new { error = "true" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

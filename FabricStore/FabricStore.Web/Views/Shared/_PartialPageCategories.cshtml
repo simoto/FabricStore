@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FabricStore.Web.Models.CategoryViewModel>
 
-<h3>Categories</h3>
-<ul class="nav nav-pills nav-stacked">
+<h3 class="text-center">Categories</h3>
+<ul class="nav nav-pills nav-stacked glyphicon-resize-small">
     @for (int i = 0; i < @Model.Count(); i++)
     {
         var currentCategory = Model.ElementAt(i);

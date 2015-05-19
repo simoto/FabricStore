@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1156,6 +1157,7 @@
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
     <Content Include="Views\Shared\_PostCommentPartial.cshtml" />
     <Content Include="Views\Shared\_ProductCommentPartial.cshtml" />
+    <Content Include="Views\Shared\_RightSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

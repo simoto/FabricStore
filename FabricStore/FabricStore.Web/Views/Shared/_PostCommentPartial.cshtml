@@ -1,18 +1,21 @@
 ﻿@model FabricStore.Web.Models.PostCommentViewModel
 <div class="row blockquote-reverse">
+    <div id="messages"></div>
     @using (Ajax.BeginForm("PostComment", new { Controller = "Comments", area = string.Empty },
                                 new AjaxOptions
                                 {
                                     HttpMethod = "POST",
                                     InsertionMode = InsertionMode.InsertBefore,
-                                    UpdateTargetId = "comments"
-                                }, null))
+                                    UpdateTargetId = "comments",
+                                }))
     {
 
         @Html.AntiForgeryToken()
-        @Html.DisplayFor(x => x.Content)
         @Html.HiddenFor(p => p.ProductId)
+        @Html.DisplayFor(x => x.Content)
         @Html.EditorFor(x => x.Content)
         <input type="submit" class="btn btn-default" />
     }
+    @Scripts.Render("~/bundles/jqueryajax")
+    @Scripts.Render("~/bundles/jqueryval")
 </div>

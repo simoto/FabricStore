@@ -27,11 +27,14 @@
             }
             if (this.HttpContext.Cache["HomePageProducts"] == null)
             {
-                var listOfProducts = this.products.All().OrderByDescending(x => x.Id).Take(8).Project().To<ProductHomeViewModel>();
+                var listOfProducts = this.products.All().OrderByDescending(x => x.Id).Take(4).Project().To<ProductHomeViewModel>();
 
                 this.HttpContext.Cache.Add("HomePageProducts", listOfProducts.ToList(), null, DateTime.Now.AddHours(1), TimeSpan.Zero, CacheItemPriority.Default, null);
             }
-            
+
+            var categories = this.data.Categories.All().Project().To<CategoryViewModel>();
+            this.ViewData.Add("Categories", categories);
+
             return this.View(this.HttpContext.Cache["HomePageProducts"]);
         }
 
