@@ -21,6 +21,10 @@
 
         public ActionResult Index()
         {
+            if (this.HttpContext == null)
+            {
+                return null;
+            }
             if (this.HttpContext.Cache["HomePageProducts"] == null)
             {
                 var listOfProducts = this.products.All().OrderByDescending(x => x.Id).Take(8).Project().To<ProductHomeViewModel>();

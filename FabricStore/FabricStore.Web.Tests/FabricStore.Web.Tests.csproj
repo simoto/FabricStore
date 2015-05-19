@@ -92,6 +92,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FabricStore.Data\FabricStore.Data.csproj">
+      <Project>{3b0e0b4e-f354-463d-9d4b-05f4153f7dca}</Project>
+      <Name>FabricStore.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FabricStore.Models\FabricStore.Models.csproj">
+      <Project>{8cb0c981-8b98-4b58-94e8-a580897ba870}</Project>
+      <Name>FabricStore.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FabricStore.Web\FabricStore.Web.csproj">
       <Project>{E5954E66-2A41-4926-9FC4-5EF44ADD3BFF}</Project>
       <Name>FabricStore.Web</Name>

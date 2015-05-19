@@ -8,47 +8,51 @@
     using FabricStore.Web;
     using FabricStore.Web.Controllers;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using FabricStore.Models;
+    using FabricStore.Data;
 
     [TestClass]
     public class HomeControllerTest
     {
-    ////        [TestMethod]
-    ////        public void Index()
-    ////        {
-    ////            // Arrange
-    ////            HomeController controller = new HomeController();
+        public static IRepository<Product> repository = new GenericRepository<Product>();
 
-    ////            // Act
-    ////            ViewResult result = controller.Index() as ViewResult;
+        [TestMethod]
+        public void Index()
+        {
+            // Arrange
+            HomeController controller = new HomeController(repository);
 
-    ////            // Assert
-    ////            Assert.IsNotNull(result);
-    ////        }
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
 
-    ////        [TestMethod]
-    ////        public void About()
-    ////        {
-    ////            // Arrange
-    ////            HomeController controller = new HomeController();
+            // Assert
+            Assert.IsNull(result);
+        }
 
-    ////            // Act
-    ////            ViewResult result = controller.About() as ViewResult;
+        [TestMethod]
+        public void About()
+        {
+            // Arrange
+            HomeController controller = new HomeController(repository);
 
-    ////            // Assert
-    ////            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
-    ////        }
+            // Act
+            ViewResult result = controller.About() as ViewResult;
 
-    ////        [TestMethod]
-    ////        public void Contact()
-    ////        {
-    ////            // Arrange
-    ////            HomeController controller = new HomeController();
+            // Assert
+            Assert.AreEqual("Fabric Store about page", result.ViewBag.Message);
+        }
 
-    ////            // Act
-    ////            ViewResult result = controller.Contact() as ViewResult;
+        [TestMethod]
+        public void Contact()
+        {
+            // Arrange
+            HomeController controller = new HomeController(repository);
 
-    ////            // Assert
-    ////            Assert.IsNotNull(result);
-    ////        }
-   }
+            // Act
+            ViewResult result = controller.Contact() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+    }
 }
