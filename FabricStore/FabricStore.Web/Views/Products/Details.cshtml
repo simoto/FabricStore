@@ -5,7 +5,6 @@
 }
 
 <h2>Details</h2>
-
 <div>
     <div class="col-md-3">
         @Html.Partial("_PartialPageCategories", @ViewData["Categories"])
@@ -55,18 +54,14 @@
                     </div>                   
                     <div class="row">
                         <h3>Comments:</h3>
-                        
+                         @Html.Partial("_ViewCommentButtonPartial", Model.Id)
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="row">
                                 @Html.Partial("_PostCommentPartial", new PostCommentViewModel(Model.Id))
                             </div>
                         }
-                        <div class="row" id="comments">
-                            @foreach (var comment in Model.Comments)
-                            {
-                                @Html.Partial("_ProductCommentPartial", comment)
-                            }
+                        <div class="row" id="comments">                                                  
                         </div>                       
                     </div>
                 </div>
@@ -77,3 +72,9 @@
     <p>
         @Html.ActionLink("Back to List", "List", "Products")
     </p>
+
+@section AjaxComment 
+{
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+}

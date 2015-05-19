@@ -1,0 +1,10 @@
+﻿@model IEnumerable<FabricStore.Web.Models.CommentViewModel>
+
+@foreach (var model in Model)
+{
+    <div class="tab-pane table-bordered blockquote-reverse">
+        <h4>By: model.AuthorName</h4>
+        <p>model.Content</p>
+        <p>model.DateCreated</p>
+    </div>
+}

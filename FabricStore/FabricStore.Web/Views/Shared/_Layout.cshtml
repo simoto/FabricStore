@@ -6,9 +6,11 @@
     <title>@ViewBag.Title - Fabric Store</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/kendo")
-    @RenderSection("styles", required: false)
+    @if (this.ViewBag.Title == "All Products")
+    {
+        @Styles.Render("~/Content/kendo")
+        @Scripts.Render("~/bundles/kendo")
+    }      
 </head>
 <body>
     <header class="container">
@@ -30,26 +32,26 @@
                         <li>@Html.ActionLink("Products", "List", "Products", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, null)</li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="dropdown">
-                                <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("All Products", "All", "Products", new { area = "Users" }, null)</li>
-                                </ul>
-                            </li>
-                        }
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <li class="dropdown">
-                                <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>@Html.ActionLink("Products", "Index", "Products", new { area = "Administration" }, null)</li>
-                                    <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Administration" }, null)</li>
-                                    <li>@Html.ActionLink("Comments", "Index", "Comments", new { area = "Administration" }, null)</li>
-                                </ul>
-                            </li>
-                        }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("All Products", "All", "Products", new { area = "Users" }, null)</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a aria-expanded="false" href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Products", "Index", "Products", new { area = "Administration" }, null)</li>
+                                <li>@Html.ActionLink("Categories", "Index", "Categories", new { area = "Administration" }, null)</li>
+                                <li>@Html.ActionLink("Comments", "Index", "Comments", new { area = "Administration" }, null)</li>
+                            </ul>
+                       </li>
+                    }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -67,8 +69,9 @@
     <footer class="container">
         <p class="text-center">&copy; @DateTime.Now.Year - SboySoft</p>
     </footer>
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/kendo")
-    @RenderSection("scripts", required: false)
+    @RenderSection("Scripts", required: false)
+    @RenderSection("AjaxComment", required: false)
 </body>
 </html>

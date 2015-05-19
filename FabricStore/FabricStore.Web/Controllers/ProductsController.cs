@@ -43,6 +43,7 @@
             return this.View(product);
         }
 
+        // GET: Products/List/5
         public ActionResult List(int? id)
         {
             int pageNumber = id.GetValueOrDefault(1);
@@ -57,6 +58,14 @@
         {
             byte[] image = this.products.All().Project().To<ProductDetailsViewModel>().FirstOrDefault(x => x.Id == id).Image;
             return this.File(image, "image/jpg");
+        }
+
+        [HttpGet]
+        public ActionResult GetComments(int id)
+        {
+            var comments = this.data.Comments.All().Where(x => x.ProductId == id).Project().To<CommentViewModel>();
+
+            return PartialView("_ProductCommentsPartial", comments);
         }
 
         private IQueryable<ProductHomeViewModel> GetAllProducts()

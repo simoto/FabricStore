@@ -3,7 +3,8 @@
     using FabricStore.Data;
     using FabricStore.Models;
     using FabricStore.Web.Models;
-
+    using AutoMapper.QueryableExtensions;
+    using System.Linq;
     using System;
     using System.Web;
     using System.Web.Mvc;
@@ -17,7 +18,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult PostComment(PostCommentViewModel comment)
+        public PartialViewResult PostComment(PostCommentViewModel comment)
         {
             if (comment != null && ModelState.IsValid)
             {
@@ -35,11 +36,11 @@
                 product.Comments.Add(databaseComment);
                 this.data.SaveChanges();
 
-                return Json(new { success = "true" }, JsonRequestBehavior.AllowGet);
-                //return this.RedirectToAction("Details", new { Controller = "Products", area = string.Empty, id = comment.ProductId });
+                return PartialView("_ProductCommentsPartial", product.Comments.AsQueryable().Project().To<CommentViewModel>());
+               //return this.RedirectToAction("GetComments", new { Controller = "Products", area = string.Empty, id = comment.ProductId });
             }
 
-            return Json(new { error = "true" }, JsonRequestBehavior.AllowGet);
+            throw new HttpException(400, "Invalid data!");
         }
     }
 }
