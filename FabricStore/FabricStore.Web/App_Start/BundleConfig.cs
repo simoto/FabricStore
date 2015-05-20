@@ -11,7 +11,7 @@
             AddBundleScripts(bundles);
             AddStyleScripts(bundles);
                         
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
 
         private static void AddStyleScripts(BundleCollection bundles)
@@ -20,9 +20,8 @@
           "~/Content/bootstrap.slate.css",
           "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/kendo").Include(
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
             "~/Content/kendo/kendo.common.min.css",
-            "~/Content/kendo/kendo.common-bootstrap.min.css",
             "~/Content/kendo/kendo.black.min.css"));
         }
 
@@ -30,10 +29,6 @@
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
             "~/Scripts/kendo/jquery.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
-            "~/Scripts/kendo/kendo.web.min.js",
-            "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
             "~/Scripts/kendo/kendo.all.min.js",
